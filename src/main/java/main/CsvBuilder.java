@@ -3,12 +3,11 @@ package main;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
 
 public class CsvBuilder {
 
 	//Create the new CSV file from the given data Set
-	public Appendable createCSV(ArrayList<String> keySet, Set<Map<String, String>> dataSet, Appendable appendable) throws IOException{
+	public void createCSV(ArrayList<String> keySet, ArrayList<Map<String, String>> dataSet, Appendable appendable) throws IOException{
 		
 		//first build up the header row
 		buildCsvHeaders(appendable, keySet);
@@ -17,8 +16,6 @@ public class CsvBuilder {
 		for(Map<String, String> elementMap : dataSet) {
 			buildCsvRow(appendable, elementMap, keySet);
 		}
-		
-		return appendable;
 		
 	}
 	

@@ -6,9 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -17,7 +15,7 @@ import com.google.gson.JsonObject;
 
 import main.JsonReader;
 
-public class JsonBuilderTest {
+public class JsonReaderTest {
 
 	@Test
     public void testGetJSONArrayReturnsJSONArray() throws FileNotFoundException {
@@ -60,7 +58,7 @@ public class JsonBuilderTest {
         FileReader reader = new FileReader("test.json");
         
         //Get Set of JsonObject Maps from method being tested
-        Set<Map<String, String>> testSet = jBuilder.buildDataSet(reader);
+        ArrayList<Map<String, String>> testSet = jBuilder.buildDataSet(reader);
         
         //Setup Set of Maps to be used to check response from method being tested
         Map<String,String> map1 = new LinkedHashMap<String,String>();
@@ -78,7 +76,7 @@ public class JsonBuilderTest {
         map3.put("name", "Asha");
         map3.put("type", "Dog");
         
-        Set<Map<String, String>> actualSet = new LinkedHashSet<Map<String,String>>();
+        ArrayList<Map<String, String>> actualSet = new ArrayList<Map<String,String>>();
         actualSet.add(map1);
         actualSet.add(map2);
         actualSet.add(map3);
@@ -128,7 +126,7 @@ public class JsonBuilderTest {
         map3.put("name", "Asha");
         map3.put("city", "Seattle");
         
-        Set<Map<String, String>> dataSet = new LinkedHashSet<Map<String,String>>();
+        ArrayList<Map<String, String>> dataSet = new ArrayList<Map<String,String>>();
         dataSet.add(map1);
         dataSet.add(map2);
         dataSet.add(map3);

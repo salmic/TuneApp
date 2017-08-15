@@ -12,8 +12,45 @@ import main.CsvBuilder;
 
 public class CsvBuilderTest extends TestCase {
 	
-	public void setup() {
+	@Test
+	public void createCsvTest() throws IOException {
+		CsvBuilder builder = new CsvBuilder();
 		
+		 //Setup a Set of keys
+		ArrayList<String> keySet = new ArrayList<String>();
+		keySet.add("id");
+		keySet.add("name");
+		keySet.add("type");
+		keySet.add("date");
+		
+		//Setup Set of Maps to be used to check response from method being tested
+        Map<String,String> map1 = new LinkedHashMap<String,String>();
+        map1.put("id", "1");
+        map1.put("name", "Suzy");
+        map1.put("type", "Person");
+        
+        Map<String,String> map2 = new LinkedHashMap<String,String>();
+        map2.put("id", "2");
+        map2.put("name", "Cleo");
+        map2.put("type", "Cat");
+        
+        Map<String,String> map3 = new LinkedHashMap<String,String>();
+        map3.put("id", "3");
+        map3.put("name", "Asha");
+        map3.put("type", "Dog");
+        map3.put("date", "1995");
+        
+        ArrayList<Map<String, String>> dataSet = new ArrayList<Map<String,String>>();
+        dataSet.add(map1);
+        dataSet.add(map2);
+        dataSet.add(map3);
+		
+		//Setup a StringBuilder to be used in the test and pass it to the buildCsvRow method
+		StringBuilder testSB = new StringBuilder();
+		builder.createCSV(keySet, dataSet, testSB);
+		
+		// assert the method under test returns the expected value
+		assertTrue(testSB.toString().equals("id,name,type,date\r\n1,Suzy,Person,\r\n2,Cleo,Cat,\r\n3,Asha,Dog,1995\r\n"));
 	}
 	
 	@Test
