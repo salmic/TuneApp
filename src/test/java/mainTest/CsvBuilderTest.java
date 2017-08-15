@@ -1,5 +1,6 @@
 package mainTest;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class CsvBuilderTest extends TestCase {
 	}
 	
 	@Test
-    public void testBuildCsvHeadersReturnsProperlyAnnotatedString() {
+    public void testBuildCsvHeadersReturnsProperlyAnnotatedString() throws IOException {
         CsvBuilder builder = new CsvBuilder();
         
         //Setup a Set of keys
@@ -28,24 +29,14 @@ public class CsvBuilderTest extends TestCase {
         
         //Setup a StringBuilder to be used in the test and pass it to the buildCsvHeaders method
         StringBuilder testSB = new StringBuilder();
-        testSB = builder.buildCsvHeaders(testSB, keySet);
-        	
-        //Setup a StringBuilder that will be used to check against the response from the method being tested
-        StringBuilder actualSB = new StringBuilder();
-        actualSB.append("test1");
-        actualSB.append(',');
-        actualSB.append("test2");
-        actualSB.append(',');
-        actualSB.append("test3");
-        actualSB.append(',');
-        actualSB.append("\r\n");
+        builder.buildCsvHeaders(testSB, keySet);
 
-        // assert the two StringBuilders are equal
-        assertTrue(testSB.toString().equals(actualSB.toString()));
+        // assert the two strings are equal
+        assertTrue(testSB.toString().equals("test1,test2,test3,\r\n"));
     }
 	
 	@Test
-    public void testBuildCsvRowReturnsProperlyAnnotatedString() {
+    public void testBuildCsvRowReturnsProperlyAnnotatedString() throws IOException {
         CsvBuilder builder = new CsvBuilder();
         
         //Setup a Set of keys
@@ -63,21 +54,10 @@ public class CsvBuilderTest extends TestCase {
         
         //Setup a StringBuilder to be used in the test and pass it to the buildCsvRow method
         StringBuilder testSB = new StringBuilder();
-        testSB = builder.buildCsvRow(testSB, dataMap, keySet);
-        	
-        //Setup a StringBuilder that will be used to check against the response from the method being tested
-        StringBuilder actualSB = new StringBuilder();
-        actualSB.append("test1");
-        actualSB.append(',');
-        actualSB.append("test2");
-        actualSB.append(',');
-        actualSB.append(',');
-        actualSB.append("test4");
-        actualSB.append(',');
-        actualSB.append("\r\n");
+        builder.buildCsvRow(testSB, dataMap, keySet);
 
-        // assert the two StringBuilders are equal
-        assertTrue(testSB.toString().equals(actualSB.toString()));
+        // assert the method under test returns the expected value
+        assertTrue(testSB.toString().equals("test1,test2,,test4,\r\n"));
     }
 	
 	@Test
@@ -89,18 +69,21 @@ public class CsvBuilderTest extends TestCase {
         String testString2 = builder.escaped("Hello W\norld");
         String testString3 = builder.escaped("Hello W\rorld");
         String testString4 = builder.escaped("He,llo World");
+        String testString5 = builder.escaped("He,llo Wo\"rld");
         	
         //Setup strings that will be used to check against the response from the method being tested
         String actualString1 = "\"He\"\"llo World\"";
         String actualString2 = "\"Hello W\norld\"";
         String actualString3 = "\"Hello W\rorld\"";
         String actualString4 = "\"He,llo World\"";
+        String actualString5 = "\"He,llo Wo\"\"rld\"";
 
         // assert the two strings are equal
         assertTrue(testString1.equals(actualString1));
         assertTrue(testString2.equals(actualString2));
         assertTrue(testString3.equals(actualString3));
         assertTrue(testString4.equals(actualString4));
+        assertTrue(testString5.equals(actualString5));
     }
 
 }

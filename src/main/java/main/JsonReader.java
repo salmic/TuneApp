@@ -41,6 +41,7 @@ public class JsonReader {
 		
 		Set<Map<String, String>> dataSet = new LinkedHashSet<Map<String,String>>();
 		
+	
 		//iterate through each JSON object in the array to build the set of JSON object maps
 		for(int i = 0; i < jsonArray.size(); i++) {
 			JsonObject tempObject = jsonArray.get(i).getAsJsonObject(); //Get the JSON object at index i
