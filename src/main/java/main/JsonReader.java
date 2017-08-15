@@ -1,11 +1,12 @@
 package main;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -21,7 +22,7 @@ public class JsonReader {
 	}
 	
 	//Get the list of CSV column headers from the JSON Array
-	public Set<String> getKeys(Set<Map<String, String>> dataSet){
+	public ArrayList<String> getKeys(Set<Map<String, String>> dataSet){
 		Set<String> keys = new LinkedHashSet<String>();
 		
 		//iterate through the dataSet and compile a Set of all of the unique keys
@@ -31,7 +32,7 @@ public class JsonReader {
 			}
 		}
 		
-		return keys;
+		return (new ArrayList<String>(keys));
 		
 	}
 	

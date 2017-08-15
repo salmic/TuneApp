@@ -1,10 +1,9 @@
 package mainTest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -22,7 +21,7 @@ public class CsvBuilderTest extends TestCase {
         CsvBuilder builder = new CsvBuilder();
         
         //Setup a Set of keys
-        Set<String> keySet = new LinkedHashSet<String>();
+        ArrayList<String> keySet = new ArrayList<String>();
         keySet.add("test1");
         keySet.add("test2");
         keySet.add("test3");
@@ -32,7 +31,7 @@ public class CsvBuilderTest extends TestCase {
         builder.buildCsvHeaders(testSB, keySet);
 
         // assert the two strings are equal
-        assertTrue(testSB.toString().equals("test1,test2,test3,\r\n"));
+        assertTrue(testSB.toString().equals("test1,test2,test3\r\n"));
     }
 	
 	@Test
@@ -40,7 +39,7 @@ public class CsvBuilderTest extends TestCase {
         CsvBuilder builder = new CsvBuilder();
         
         //Setup a Set of keys
-        Set<String> keySet = new LinkedHashSet<String>();
+        ArrayList<String> keySet = new ArrayList<String>();
         keySet.add("1");
         keySet.add("2");
         keySet.add("3");
@@ -57,7 +56,7 @@ public class CsvBuilderTest extends TestCase {
         builder.buildCsvRow(testSB, dataMap, keySet);
 
         // assert the method under test returns the expected value
-        assertTrue(testSB.toString().equals("test1,test2,,test4,\r\n"));
+        assertTrue(testSB.toString().equals("test1,test2,,test4\r\n"));
     }
 	
 	@Test

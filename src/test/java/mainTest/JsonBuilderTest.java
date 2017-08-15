@@ -1,9 +1,10 @@
 package mainTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -133,10 +134,10 @@ public class JsonBuilderTest {
         dataSet.add(map3);
         
         //Store set of keys that is returned by the getKeys method
-        Set<String> testSet = jBuilder.getKeys(dataSet);
+        ArrayList<String> testSet = jBuilder.getKeys(dataSet);
         
         //Create a set of keys to use in comparison
-        Set<String> actualSet = new LinkedHashSet<String>();
+        ArrayList<String> actualSet = new ArrayList<String>();
         actualSet.add("id");
         actualSet.add("name");
         actualSet.add("type");
