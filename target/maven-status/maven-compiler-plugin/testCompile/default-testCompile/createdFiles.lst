@@ -1,2 +1,2 @@
-mainTest\JsonBuilderTest.class
 mainTest\CsvBuilderTest.class
+mainTest\JsonReaderTest.class
